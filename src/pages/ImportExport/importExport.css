@@ -1,0 +1,663 @@
+/* Import/Export Page Styles - 3 Colunas */
+
+/* Metrics Grid - Estilo Dashboard */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(78, 205, 196, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--primary-color);
+}
+
+.metric-card.primary::before {
+  background: linear-gradient(90deg, #4ECDC4 0%, #45b7d1 100%);
+}
+
+.metric-card.success::before {
+  background: linear-gradient(90deg, #2ecc71 0%, #27ae60 100%);
+}
+
+.metric-card.warning::before {
+  background: linear-gradient(90deg, #ff9800 0%, #f57c00 100%);
+}
+
+.metric-card.danger::before {
+  background: linear-gradient(90deg, #27ae60 0%, #2ecc71 100%);
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.metric-icon {
+  font-size: 2.5rem;
+  opacity: 0.8;
+}
+
+.metric-content {
+  flex: 1;
+}
+
+.metric-label {
+  font-size: 0.9rem;
+  color: #bdc3c7;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.metric-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.metric-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: #95a5a6;
+}
+
+.trend-icon {
+  font-size: 0.9rem;
+}
+
+.trend-text {
+  font-weight: 500;
+}
+
+/* ============================================ */
+/*   GRID DE 3 COLUNAS - PRINCIPAL             */
+/* ============================================ */
+
+.import-export-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* ============================================ */
+/*   CARDS BASE                                */
+/* ============================================ */
+
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Importar - Ciano */
+.import-card::before {
+  background: linear-gradient(90deg, #4ECDC4, #45b7d1);
+}
+
+.import-card:hover {
+  border-color: rgba(78, 205, 196, 0.4);
+}
+
+/* Card Exportar - Roxo */
+.export-card::before {
+  background: linear-gradient(90deg, #9b59b6, #8e44ad);
+}
+
+.export-card:hover {
+  border-color: rgba(155, 89, 182, 0.4);
+}
+
+/* Card Gerenciar - Vermelho */
+.danger-card::before {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+
+.danger-card:hover {
+  border-color: rgba(231, 76, 60, 0.4);
+}
+
+/* ============================================ */
+/*   CARD HEADER                               */
+/* ============================================ */
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.card-description {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+/* ============================================ */
+/*   ACTIONS GROUP                             */
+/* ============================================ */
+
+.actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ============================================ */
+/*   ACTION BUTTONS                            */
+/* ============================================ */
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  text-align: left;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transition: width 0.3s ease;
+}
+
+.action-btn:hover::before {
+  width: 100%;
+}
+
+.action-btn:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Primary - Ciano */
+.action-btn.primary {
+  background: linear-gradient(135deg, #4ECDC4 0%, #45b7d1 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(78, 205, 196, 0.3);
+}
+
+.action-btn.primary:hover {
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.4);
+}
+
+/* Button Secondary - Roxo */
+.action-btn.secondary {
+  background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
+}
+
+.action-btn.secondary:hover {
+  box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
+}
+
+/* Button Danger - Vermelho */
+.action-btn.danger {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+}
+
+.action-btn.danger:hover {
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+}
+
+/* ============================================ */
+/*   BUTTON CONTENT                            */
+/* ============================================ */
+
+.btn-icon {
+  font-size: 1.75rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.btn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.btn-text strong {
+  font-size: 1rem;
+  font-weight: 600;
+  display: block;
+}
+
+.btn-text small {
+  font-size: 0.8rem;
+  opacity: 0.9;
+  display: block;
+  line-height: 1.3;
+}
+
+/* ============================================ */
+/*   WARNING BOX                               */
+/* ============================================ */
+
+.warning-box {
+  background: rgba(231, 76, 60, 0.1);
+  border: 1px solid rgba(231, 76, 60, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.warning-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.warning-box small {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.warning-box strong {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* ============================================ */
+/*   OLD ACTION BUTTONS (backup)              */
+/* ============================================ */
+
+.import-export-actions,
+.action-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.import-export-actions button,
+.action-group button {
+  flex: 1;
+  min-width: 200px;
+  padding: 1rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.import-btn {
+  background: linear-gradient(135deg, #4ECDC4 0%, #45b7d1 100%);
+  color: white;
+}
+
+.export-btn {
+  background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+  color: white;
+}
+
+.clear-btn {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+}
+
+.import-btn:hover,
+.export-btn:hover,
+.clear-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================ */
+/*   DATA DISPLAY                              */
+/* ============================================ */
+
+.data-preview {
+  background: rgba(30, 58, 70, 0.9);
+  border: 1px solid rgba(78, 205, 196, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.data-preview h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+.data-preview pre {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  color: #95B8D1;
+  font-size: 0.85rem;
+}
+
+/* ============================================ */
+/*   DARK MODE                                 */
+/* ============================================ */
+
+.dashboard-container.dark-mode .card {
+  background: #1e3a47;
+  border-color: #34495e;
+}
+
+.dashboard-container.dark-mode .card-header h2 {
+  color: #f4f7f9;
+}
+
+.dashboard-container.dark-mode .card-description {
+  color: #8a9ba8;
+}
+
+.dashboard-container.dark-mode .warning-box {
+  background: rgba(231, 76, 60, 0.05);
+  border-color: rgba(231, 76, 60, 0.2);
+}
+
+.dashboard-container.dark-mode .warning-box small {
+  color: #8a9ba8;
+}
+
+.dashboard-container.dark-mode .warning-box strong {
+  color: #f4f7f9;
+}
+
+/* ============================================ */
+/*   MOBILE OPTIMIZATIONS                      */
+/* ============================================ */
+
+@media (max-width: 1200px) {
+  .import-export-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Sidebar mobile */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    z-index: 999;
+    transform: translateX(-100%);
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar.mobile-open {
+    transform: translateX(0);
+  }
+  
+  .mobile-header {
+    display: flex !important;
+  }
+  
+  .mobile-overlay {
+    display: block;
+  }
+  
+  .main-content {
+    margin-left: 0 !important;
+    padding-top: 60px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .page-header {
+    padding: 0.75rem 0.5rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.3rem;
+  }
+  
+  /* Metrics Grid Mobile */
+  .metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .metric-card {
+    padding: 1.25rem;
+  }
+  
+  .metric-icon {
+    font-size: 2rem;
+  }
+  
+  .metric-value {
+    font-size: 1.8rem;
+  }
+  
+  .metric-label {
+    font-size: 0.85rem;
+  }
+  
+  .metric-trend {
+    font-size: 0.75rem;
+  }
+
+  /* Import Export Grid */
+  .import-export-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  .card-header h2 {
+    font-size: 1.25rem;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .action-btn {
+    padding: 0.85rem 1rem;
+  }
+
+  .btn-icon {
+    font-size: 1.5rem;
+  }
+
+  .btn-text strong {
+    font-size: 0.9rem;
+  }
+
+  .btn-text small {
+    font-size: 0.75rem;
+  }
+
+  .warning-box {
+    padding: 0.75rem;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .warning-icon {
+    font-size: 1.25rem;
+  }
+
+  .warning-box small {
+    font-size: 0.8rem;
+  }
+  
+  /* Action buttons */
+  .import-export-actions,
+  .action-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .import-export-actions button,
+  .action-group button {
+    width: 100%;
+    min-width: unset;
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Data Preview */
+  .data-preview {
+    padding: 1rem;
+  }
+  
+  .data-preview pre {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .page-header h1 {
+    font-size: 1.2rem;
+  }
+  
+  .metric-card {
+    padding: 1rem;
+  }
+  
+  .metric-icon {
+    font-size: 1.75rem;
+  }
+  
+  .metric-value {
+    font-size: 1.5rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .card-icon {
+    font-size: 1.75rem;
+  }
+
+  .card-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .card-description {
+    font-size: 0.85rem;
+  }
+
+  .action-btn {
+    padding: 0.75rem;
+  }
+
+  .btn-icon {
+    font-size: 1.35rem;
+  }
+
+  .btn-text strong {
+    font-size: 0.85rem;
+  }
+
+  .btn-text small {
+    font-size: 0.7rem;
+  }
+  
+  .import-export-actions button,
+  .action-group button {
+    padding: 0.65rem;
+    font-size: 0.8rem;
+  }
+}

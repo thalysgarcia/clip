@@ -1,0 +1,277 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply bg-white dark:bg-cb-background transition-colors duration-300;
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+:root {
+  /* Cores principais baseadas na imagem */
+  --primary-color: #4ECDC4;
+  --primary-dark: #3aaaa3;
+  --secondary-color: #1e3a47;
+  --accent-color: #95B8D1;
+  --background-light: #f4f7f9;
+  --background-dark: #1e3a47;
+  --background-darker: #152935;
+  --text-dark: #2c3e50;
+  --text-light: #6c7a89;
+  --text-lighter: #8a9ba8;
+  --border-color: #dfe6e9;
+  --border-dark: #34495e;
+  --white: #ffffff;
+  --success: #4ECDC4;
+  --danger: #e74c3c;
+  --warning: #f39c12;
+  --info: #95B8D1;
+  
+  /* Cultura Builder Hub Colors - Light Mode (default) */
+  --cb-sidebar: #F9FAFB;
+  --cb-background: #FFFFFF;
+  --cb-card: #FFFFFF;
+  --cb-border: #E5E7EB;
+  --cb-text-primary: #111827;
+  --cb-text-secondary: #6B7280;
+  --cb-text-muted: #9CA3AF;
+  --cb-hover: #F3F4F6;
+  --cb-input: #FFFFFF;
+}
+
+/* Dark Mode */
+:root.dark,
+html.dark {
+  --cb-sidebar: #1A1A1A;
+  --cb-background: #0F0F0F;
+  --cb-card: #1F2937;
+  --cb-border: #374151;
+  --cb-text-primary: #FFFFFF;
+  --cb-text-secondary: #9CA3AF;
+  --cb-text-muted: #6B7280;
+  --cb-hover: #374151;
+  --cb-input: #1F2937;
+}
+
+/* Apply CSS variables to Tailwind classes */
+@layer utilities {
+  .bg-cb-sidebar { background-color: var(--cb-sidebar) !important; }
+  .bg-cb-background { background-color: var(--cb-background) !important; }
+  .bg-cb-card { background-color: var(--cb-card) !important; }
+  .bg-cb-hover { background-color: var(--cb-hover) !important; }
+  .bg-cb-input { background-color: var(--cb-input) !important; }
+  .border-cb-border { border-color: var(--cb-border) !important; }
+  .text-cb-text-primary { color: var(--cb-text-primary) !important; }
+  .text-cb-text-secondary { color: var(--cb-text-secondary) !important; }
+  .text-cb-text-muted { color: var(--cb-text-muted) !important; }
+  .divide-cb-border > * + * { border-color: var(--cb-border) !important; }
+  .ring-cb-border { --tw-ring-color: var(--cb-border) !important; }
+  .ring-cb-primary { --tw-ring-color: var(--cb-primary) !important; }
+  .ring-offset-cb-background { --tw-ring-offset-color: var(--cb-background) !important; }
+}
+
+.App {
+  min-height: 100vh;
+}
+
+/* Dark Mode Toast Styles */
+.dark .Toastify__toast,
+body.dark-mode .Toastify__toast {
+  background-color: #1e3a47 !important;
+  color: #f4f7f9 !important;
+  border-left: 4px solid #4ECDC4;
+}
+
+.dark .Toastify__toast--success,
+body.dark-mode .Toastify__toast--success {
+  background-color: #1e3a47 !important;
+  border-left-color: #4ECDC4 !important;
+}
+
+.dark .Toastify__toast--error,
+body.dark-mode .Toastify__toast--error {
+  background-color: #1e3a47 !important;
+  border-left-color: #e74c3c !important;
+}
+
+.dark .Toastify__toast--info,
+body.dark-mode .Toastify__toast--info {
+  background-color: #1e3a47 !important;
+  border-left-color: #95B8D1 !important;
+}
+
+.dark .Toastify__close-button,
+body.dark-mode .Toastify__close-button {
+  color: #f4f7f9 !important;
+}
+
+/* ===== Global Mobile Header Styles ===== */
+.mobile-header {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 999;
+  padding: 0 1rem;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-menu-btn {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 24px;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  width: 24px;
+  background: var(--text-dark);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.mobile-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.mobile-user {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  backdrop-filter: blur(2px);
+}
+
+.mobile-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--primary-color);
+  padding: 0.5rem;
+}
+
+/* Dark Mode Mobile Header */
+.dashboard-container.dark-mode .mobile-header,
+.alerta-container.dark-mode .mobile-header {
+  background: #1e3a47;
+  border-bottom-color: #34495e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-container.dark-mode .hamburger span,
+.alerta-container.dark-mode .hamburger span {
+  background: #4ECDC4;
+}
+
+.dashboard-container.dark-mode .mobile-logo,
+.alerta-container.dark-mode .mobile-logo {
+  color: #4ECDC4;
+}
+
+/* ===== Global mobile hardening for all pages ===== */
+@media (max-width: 768px) {
+  .mobile-header {
+    display: flex;
+  }
+  
+  .mobile-close-btn {
+    display: block;
+  }
+  
+  .mobile-overlay {
+    display: block;
+  }
+  
+  .dashboard-container,
+  .main-content,
+  .alerta-container {
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+}
+

@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Regras para a coleção 'users'
+    // Permite que usuários autenticados leiam e escrevam seus próprios dados
+    // Permite que usuários autenticados leiam todos os usuários (para admin)
+    match /users/{userId} {
+      // Permitir leitura se o usuário estiver autenticado
+      allow read: if request.auth != null;
+      
+      // Permitir escrita apenas no próprio documento ou se for admin
+      allow create: if request.auth != null && request.auth.uid == userId;
+      allow update: if request.auth != null && (request.auth.uid == userId || request.resource.data.admin == true);
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Regras para a coleção 'computadores'
+    match /computadores/{computadorId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+    
+    // Regras para a coleção 'grupos'
+    match /grupos/{grupoId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null;
+      allow delete: if request.auth != null;
+    }
+    
+    // Regras para a coleção 'audit_log'
+    match /audit_log/{logId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      // Não permitir update ou delete de logs de auditoria
+      allow update: if false;
+      allow delete: if false;
+    }
+    
+    // Negar acesso a todas as outras coleções por padrão
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+
